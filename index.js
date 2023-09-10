@@ -3,8 +3,8 @@ dotenv.config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const helmet = require("helmet");
-const morgan = require("morgan");
+// const helmet = require("helmet");
+// const morgan = require("morgan");
 const userRoute = require("./routes/users.js");
 const authRoute = require("./routes/auth.js");
 const postRoute = require("./routes/post.js");
@@ -23,9 +23,9 @@ mongoose.connect(
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use(cors());
 app.use(express.json());
-app.use(helmet());
-app.use(morgan("common"));
-fetch('http://localhost:8800', { mode: 'no-cors' });
+// app.use(helmet());
+// app.use(morgan("common"));
+// fetch('http://localhost:8800');
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/images");

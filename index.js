@@ -3,7 +3,7 @@ dotenv.config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-// const helmet = require("helmet");
+const helmet = require("helmet");
 // const morgan = require("morgan");
 const userRoute = require("./routes/users.js");
 const authRoute = require("./routes/auth.js");
@@ -13,6 +13,8 @@ const postRoute = require("./routes/post.js");
 const multer = require("multer");
 const path = require("path");
 const cors =require("cors");
+
+
 
 // Set Mongoose to use built-in JavaScript Promises
 mongoose.Promise = global.Promise;
@@ -25,7 +27,7 @@ mongoose.connect(
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use(cors());
 app.use(express.json());
-// app.use(helmet());
+app.use(helmet());
 // app.use(morgan("common"));
 // fetch('http://localhost:8800');
 const storage = multer.diskStorage({

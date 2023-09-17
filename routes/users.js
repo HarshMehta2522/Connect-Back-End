@@ -56,14 +56,20 @@ router.get("/", async (req, res) => {
 });
 
 //get all user 
-router.get("/all", async (req, res) => {
+router.get("/all/:currentUserId", async (req, res) => {
   try {
-    const users = await User.find();
+    const currentUserId = req.params.currentUserId;
+
+    const users = await User.find({
+      _id: { $not: { $eq: currentUserId } },
+    });
+
     res.status(200).json(users);
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 
 router.get("/friends/:userId", async (req, res) => {
   try {

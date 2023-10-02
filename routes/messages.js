@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const Message = require("../models/Message");
 
-
+const cors =require("cors");
+app.use(cors());
 router.post("/",async(req,res)=>{
     const newMessage = new Message(req.body)
     try{

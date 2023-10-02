@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const Conversation = require("../models/Conversation");
-const conversation = require("../models/Conversation");
-
+const cors =require("cors");
+app.use(cors());
 router.post("/", async (req, res) => {
   try {
     // Check if a conversation already exists with the same members
@@ -34,7 +34,7 @@ router.get("/:userId", async (req, res) => {
         $in: [req.params.userId],
       },
     });
-    res.status(200).json(conversation)
+    res.status(200).json(conversation);
   } catch (err) {
     res.status(500).json(err);
   }

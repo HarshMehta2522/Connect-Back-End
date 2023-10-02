@@ -1,14 +1,15 @@
-const User = require("../models/User");
 const router = require("express").Router();
-const bcrypt = require("bcrypt");
-
+const User = require("../models/User");
+const bcryptjs = require("bcryptjs");
+const cors =require("cors");
+app.use(cors());
 //update user
 router.put("/:id", async (req, res) => {
   if (req.body.userId === req.params.id || req.body.isAdmin) {
     if (req.body.password) {
       try {
-        const salt = await bcrypt.genSalt(10);
-        req.body.password = await bcrypt.hash(req.body.password, salt);
+        const salt = await bcryptjs.genSalt(10);
+        req.body.password = await bcryptjs.hash(req.body.password, salt);
       } catch (err) {
         return res.status(500).json(err);
       }
@@ -55,7 +56,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-//get all user 
+//get all user
 router.get("/all/:currentUserId", async (req, res) => {
   try {
     const currentUserId = req.params.currentUserId;
@@ -69,7 +70,6 @@ router.get("/all/:currentUserId", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 router.get("/friends/:userId", async (req, res) => {
   try {

@@ -24,3 +24,6 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+
+client_secret_1095623526028-piqafsj2eg930j66himslpg543lsoiki.apps.googleusercontent.com.json
+.vercel
